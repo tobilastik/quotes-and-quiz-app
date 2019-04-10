@@ -27,7 +27,7 @@ export default class ShareScreen extends React.Component {
     Share.share(
       {
         message:
-          "Hey Hommie, Check Out this J Cole Quotes and Lyrics Game App, Ipromise you gon' love it, you can download it on AppStore and Google Play Store. ",
+          "Hey Hommie, Check Out this J Cole Quotes and Lyrics Game App, I promise you gon' love it, you can download it on AppStore and Google Play Store. ",
         url: "...",
         title: ""
       },
@@ -47,9 +47,10 @@ export default class ShareScreen extends React.Component {
         <Image
           source={require("../../assets/images/share.png")}
           style={{
-            width: 380,
+            width: 370,
             height: 200,
             justifyContent: "center",
+            paddingRight: 10,
             alignItems: "center"
           }}
         />
@@ -91,11 +92,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "center"
-  },
-  bottomBanner: {
-    position: "absolute",
-    bottom: 0
+    
+    alignSelf: "center",
+    paddingLeft: 10,
+    paddingRight: 10
   },
 });

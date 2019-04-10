@@ -1,6 +1,6 @@
 {
 	"expo": {
-		"name": "J Cole Quotes and Lyrics Quiz",
+		"name": "J Cole Lyrics Quiz (Pro)",
 		"slug": "jcole-quotes-lyrics-quiz",
 		"privacy": "public",
 		"sdkVersion": "32.0.0",
@@ -19,11 +19,11 @@
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
       "supportsTablet": true,
-      "package": "com.Jcole.jcolequotesandlyricsquiz-ios"
+      "package": "com.Jcole.jcolequotesandlyricsquizpro"
 		},
 
 		"android": {
-			"package": "com.Jcole.jcolequotesandlyricsquiz"
+			"bundleIdentifier": "com.Jcole.jcolequotesandlyricsquiz"
 		},
 
 		"description": "This app contains over 300 J Cole Quotes and you also a Lyrics Quiz, where you can test your knowledge on how well you know J Cole Songs "

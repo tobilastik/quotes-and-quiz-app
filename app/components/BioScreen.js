@@ -15,7 +15,7 @@ import { Icon } from "native-base";
 let SCREEN_WIDTH = Dimensions.get("window").width;
 let SCREEN_HEIGHT = Dimensions.get("window").height;
 
-const images = [{ id: 1, src: require("../../assets/images/bio.jpg") }];
+const images = [{ id: 1, src: require("../../assets/images/bio.png") }];
 
 export default class BioScreen extends React.Component {
   constructor() {

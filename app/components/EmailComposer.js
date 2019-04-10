@@ -24,9 +24,10 @@ export default class EmailComposer extends React.Component {
 					source={require('../../assets/images/contactus.png')}
 					style={{
 						width: 390,
-						height: 200,
+						height: 100,
 						justifyContent: 'center',
 						alignItems: 'center',
+						paddingTop: 200,
 						paddingLeft: 5,
 						paddingRight: 5,
 					}}
