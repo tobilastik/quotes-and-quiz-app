@@ -10,14 +10,14 @@ import {
 import Icon from "@expo/vector-icons/Ionicons";
 import QuoteScreen from "./app/components/QuoteScreen";
 import BioScreen from "./app/components/BioScreen";
-//import RemoveAds from "./app/components/RemoveAds";
+import Credits from "./app/components/Credits";
 import EmailComposer from "./app/components/EmailComposer";
 import ShareScreen from "./app/components/ShareScreen";
 import QuizScreen from "./app/components/QuizScreen";
 import MultipleChoice from "./app/components/MultipleChoice";
 import TimeGame from "./app/components/TimeGame";
 //import SideMenu from "./app/components/SideMenu"
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import store from "./app/redux/store";
 import { Provider } from "react-redux";
 
@@ -126,21 +126,21 @@ const DashboardStackNavigator = createStackNavigator(
   }
 );
 
-// const RemoveAd = createStackNavigator({
-//   "Remove Ads": {
-//     screen: RemoveAds,
-//     navigationOptions: ({ navigation }) => ({
-//       headerTitle: "Remove Ads",
-//       headerLeft: (
-//         <Icon
-//           onPress={() => navigation.openDrawer()}
-//           name="md-menu"
-//           style={{ padding: 10, fontSize: 30 }}
-//         />
-//       )
-//     })
-//   }
-// });
+const Credit = createStackNavigator({
+  "Credits": {
+    screen: Credits,
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: "Credits",
+      headerLeft: (
+        <Icon
+          onPress={() => navigation.openDrawer()}
+          name="md-menu"
+          style={{ padding: 10, fontSize: 30 }}
+        />
+      )
+    })
+  }
+});
 const Biography = createStackNavigator({
   Biography: {
     screen: BioScreen,
@@ -216,18 +216,19 @@ const AppDrawerNavigator = createDrawerNavigator(
         )
       }
     },
-    // "Remove Ads": {
-    //   screen: RemoveAd,
-    //   navigationOptions: {
-    //     drawerLabel: "Remove Ads",
-    //     drawerIcon: ({ tintColor, focused }) => (
-    //       <Image
-    //         source={require("./assets/images/ads.png")}
-    //         style={{ height: 24, width: 26, tintColor: tintColor }}
-    //       />
-    //     )
-    //   }
-    // },
+    "Credits": {
+      screen: Credit,
+      navigationOptions: {
+        drawerLabel: "Credits",
+        drawerIcon: ({ tintColor, focused }) => (
+          <FontAwesome
+            name={focused ? "copyright" : "copyright"}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
     "Contact the Author": {
       screen: Contact,
       navigationOptions: {

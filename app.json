@@ -18,14 +18,14 @@
 		},
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
-      "supportsTablet": true,
-      "package": "com.Jcole.jcolequotesandlyricsquizpro"
+			"supportsTablet": true,
+			"bundleIdentifier": "com.Jcole.jcolequotesandlyricsquizpro"
 		},
 
 		"android": {
-			"bundleIdentifier": "com.Jcole.jcolequotesandlyricsquiz"
+			"package": "com.Jcole.jcolequotesandlyricsquiz"
 		},
 
-		"description": "This app contains over 300 J Cole Quotes and you also a Lyrics Quiz, where you can test your knowledge on how well you know J Cole Songs "
+		"description": "This app contains over 300 J Cole Quotes and Lyrics Quiz, where you can test your knowledge on how well you know J Cole Songs "
 	}
 }
