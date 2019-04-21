@@ -145,7 +145,7 @@ export default class Question extends React.Component {
 					{`
           `}
 				</Text>
-				<Text style={{ fontSize: 20, color: 'red' }}>credits: J Cole</Text>
+				<Text style={{ fontSize: 20, color: 'red' }}> J Cole</Text>
 				<View style={{ width: '100%', marginTop: 20 }}>
 					{this.state.bgOpt0 == 'red' || this.state.bgOpt0 == 'green' ? (
 						<TouchableOpacity block={true} style={[styles.button, { backgroundColor: this.state.bgOpt0 }]}>

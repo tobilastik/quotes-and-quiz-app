@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { highScoreLife, highScoreTime } from '../redux/actions';
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo';
 
 class QuizScreen extends Component {
 	constructor(props) {
@@ -31,6 +32,10 @@ class QuizScreen extends Component {
 		this.props.highScoreTime();
 	}
 
+	bannerError() {
+		console.log('An error');
+		return;
+	}
 	render() {
 		const { ScoreLife, ScoreTime } = this.state;
 
@@ -38,10 +43,22 @@ class QuizScreen extends Component {
 			<View
 				style={{
 					flex: 1,
-					justifyContent: 'center',
+
 					alignItems: 'center',
 				}}
 			>
+				<View>
+					<AdMobBanner
+						style={styles.bottomBanner}
+						bannerSize="fullBanner"
+						adUnitID="ca-app-pub-1217536501250691/3616143081"
+						// Test ID, Replace with your-admob-unit-id
+						testDeviceID="EMULATOR"
+						didFailToReceiveAdWithError={this.bannerError}
+					/>
+				</View>
+				<View syle={{ flex: 3 }} />
+
 				<TouchableOpacity
 					block={true}
 					style={styles.button}
@@ -63,10 +80,23 @@ class QuizScreen extends Component {
 					<Text>High Score: {ScoreTime}</Text>
 				</View>
 				<View>
-					<Text style={{ position: 'relative', fontWeight: 'bold', marginTop: 50, color: 'red', padding: 10, }}>
-						© All the lyrics and quotes we used in this quiz belongs to Jermaine Lamar Cole popularly known as J Cole
-						and it's being used Under the U.S. Code, Title 17, Section 107 of the Copyright Act 1976.
+					<Text
+						style={{ position: 'relative', fontWeight: 'bold', marginTop: 50, color: 'red', padding: 10 }}
+					>
+						© All the lyrics and quotes we used in this quiz belongs to Jermaine Lamar Cole popularly known
+						as J Cole and it's being used Under the U.S. Code, Title 17, Section 107 of the Copyright Act
+						1976.
 					</Text>
+				</View>
+				<View style={{ top: 150 }}>
+					<AdMobBanner
+						style={styles.bottomBanner}
+						bannerSize="fullBanner"
+						adUnitID="ca-app-pub-1217536501250691/3616143081"
+						// Test ID, Replace with your-admob-unit-id
+						testDeviceID="EMULATOR"
+						didFailToReceiveAdWithError={this.bannerError}
+					/>
 				</View>
 			</View>
 		);

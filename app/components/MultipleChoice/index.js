@@ -16,6 +16,8 @@ import Question from './Question';
 import { questions } from './gamelist';
 import { LifeUpdateScore } from '../../redux/actions';
 import { connect } from 'react-redux';
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo';
+
 
 class Questions extends React.Component {
 	constructor(props) {
@@ -29,7 +31,7 @@ class Questions extends React.Component {
 			correctScore: 1,
 			totalScore: 50,
 			highScore: 0,
-			life: 7,
+			life: 3,
 			results: {
 				score: 0,
 				correctAnswers: 0,
@@ -93,7 +95,7 @@ class Questions extends React.Component {
 			correctScore: 1,
 			totalScore: 50,
 			highScore: 0,
-			life: 7,
+			life: 3,
 			results: {
 				score: 0,
 				correctAnswers: 0,
@@ -105,7 +107,10 @@ class Questions extends React.Component {
 			highScore: this.props.ScoreLife,
 		});
 	};
-
+	bannerError() {
+		console.log("An error");
+		return;
+	  }
 
 	render() {
 		// console.log('===========highScore=========================');
@@ -113,6 +118,16 @@ class Questions extends React.Component {
 		// console.log('====================================');
 		return (
 			<ScrollView style={styles.container}>
+			<View>
+						<AdMobBanner
+							style={styles.bottomBanner}
+							bannerSize="fullBanner"
+							adUnitID="ca-app-pub-1217536501250691/3616143081"
+							// Test ID, Replace with your-admob-unit-id
+							testDeviceID="EMULATOR"
+							didFailToReceiveAdWithError={this.bannerError}
+						/>
+					</View>
 				{!!this.state.questions.length > 0 && this.state.completed === false && this.state.life != 0 && (
 					<Question
 						onSelect={answer => {
@@ -189,6 +204,25 @@ class Questions extends React.Component {
 						</View>
 					)}
 				</View>
+				<View style = {{top: 100}}>
+					<AdMobBanner
+						style={styles.bottomBanner}
+						bannerSize="fullBanner"
+						adUnitID="ca-app-pub-1217536501250691/3616143081"
+						// Test ID, Replace with your-admob-unit-id
+						testDeviceID="EMULATOR"
+						didFailToReceiveAdWithError={this.bannerError}
+					/>
+          
+					<AdMobBanner
+						style={styles.bottomBanner}
+						bannerSize="fullBanner"
+						adUnitID="ca-app-pub-1217536501250691/6872861818"
+						// Test ID, Replace with your-admob-unit-id
+						testDeviceID="EMULATOR"
+						didFailToReceiveAdWithError={this.bannerError}
+					/>
+				</View>
 			</ScrollView>
 		);
 	}
@@ -203,6 +237,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	bottomBanner: {
+		position: 'relative',
+		bottom: 0,
 	},
 	button: {
 		backgroundColor: '#5cb85c',

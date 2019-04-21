@@ -148,7 +148,7 @@ export default class Question extends React.Component {
 						{`
           `}
 					</Text>
-					<Text style={{ fontSize: 20, color: 'red' }}>credits: J Cole</Text>
+					<Text style={{ fontSize: 20, color: 'red' }}> J Cole</Text>
 					<View style={{ width: '100%', marginTop: 20 }}>
 						<View
 							style={{
