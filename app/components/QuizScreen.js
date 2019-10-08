@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { highScoreLife, highScoreTime } from '../redux/actions';
-import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo';
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo-ads-admob';
 
 class QuizScreen extends Component {
 	constructor(props) {
@@ -31,11 +31,11 @@ class QuizScreen extends Component {
 		this.props.highScoreLife();
 		this.props.highScoreTime();
 	}
-
-	bannerError() {
-		console.log('An error');
-		return;
-	}
+  bannerError() {
+    console.log("An error");
+    return;
+  }
+  
 	render() {
 		const { ScoreLife, ScoreTime } = this.state;
 
@@ -43,7 +43,7 @@ class QuizScreen extends Component {
 			<View
 				style={{
 					flex: 1,
-
+					
 					alignItems: 'center',
 				}}
 			>
@@ -79,20 +79,22 @@ class QuizScreen extends Component {
 				<View>
 					<Text>High Score: {ScoreTime}</Text>
 				</View>
-				<View>
-					<Text
-						style={{ position: 'relative', fontWeight: 'bold', marginTop: 50, color: 'red', padding: 10 }}
-					>
-						© All the lyrics and quotes we used in this quiz belongs to Jermaine Lamar Cole popularly known
-						as J Cole and it's being used Under the U.S. Code, Title 17, Section 107 of the Copyright Act
-						1976.
-					</Text>
-				</View>
-				<View style={{ top: 150 }}>
+        <View syle={{ flex: 3 }} />
+
+				<View style = {{top: 150}}>
 					<AdMobBanner
 						style={styles.bottomBanner}
 						bannerSize="fullBanner"
 						adUnitID="ca-app-pub-1217536501250691/3616143081"
+						// Test ID, Replace with your-admob-unit-id
+						testDeviceID="EMULATOR"
+						didFailToReceiveAdWithError={this.bannerError}
+					/>
+          
+					<AdMobBanner
+						style={styles.bottomBanner}
+						bannerSize="fullBanner"
+						adUnitID="ca-app-pub-1217536501250691/6872861818"
 						// Test ID, Replace with your-admob-unit-id
 						testDeviceID="EMULATOR"
 						didFailToReceiveAdWithError={this.bannerError}
@@ -112,6 +114,11 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		padding: 10,
 		width: '80%',
+	},
+	container: {
+		display: 'flex',
+		height: '20%',
+		position: 'relative',
 	},
 });
 

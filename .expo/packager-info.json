@@ -1,10 +1,10 @@
 {
-  "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "devToolsPort": 19003,
+  "expoServerPort": 19004,
+  "packagerPort": 19005,
+  "packagerPid": 13031,
+  "expoServerNgrokUrl": "https://3j-mec.tobilastik.quotes-and-quiz-app-ios.exp.direct",
+  "packagerNgrokUrl": "https://packager.3j-mec.tobilastik.quotes-and-quiz-app-ios.exp.direct",
+  "ngrokPid": 13054,
   "webpackServerPort": null
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo';
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo-ads-admob';
 
 export default class Credits extends Component {
 	render() {

@@ -1,12 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView, TouchableOpacity, Linking, Platform } from 'react-native';
 import Question from './Question';
 import { questions } from './gamelist';
 import { connect } from 'react-redux';
 import { timeUpdateScore } from '../../redux/actions';
-import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo';
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo-ads-admob';
 
 class Questions extends React.Component {
+	_handlePress = () => {
+		Platform.OS === 'ios'
+			? Linking.openURL('https://itunes.apple.com/ng/app/id1459086040?mt=8')
+			: Linking.openURL('https://play.google.com/store/apps/details?id=com.jcole.jcolequotesandlyricsgame');
+		this.props.onPress && this.props.onPress();
+	};
+
 	_isMounted = true;
 	constructor(props) {
 		super(props);
@@ -127,25 +134,24 @@ class Questions extends React.Component {
 			this.setState({ timeLeft: this.state.timeLeft - 1 });
 		}, 1000);
 	};
-  bannerError() {
-    console.log("An error");
-    return;
-  }
+
 	render() {
 		// console.log("===========highScore=========================");
 		// console.log(this.state.highScore);
 		// console.log("====================================");
 		return (
-			<ScrollView style={styles.container}>
-				<View>
-					<AdMobBanner
-						style={styles.bottomBanner}
-						bannerSize="fullBanner"
-						adUnitID="ca-app-pub-1217536501250691/3616143081"
-						// Test ID, Replace with your-admob-unit-id
-						testDeviceID="EMULATOR"
-						didFailToReceiveAdWithError={this.bannerError}
-					/>
+			<ScrollView>
+				<View style={styles.container}>
+					<View>
+						<AdMobBanner
+							style={styles.bottomBanner}
+							bannerSize="fullBanner"
+							adUnitID="ca-app-pub-1217536501250691/3616143081"
+							// Test ID, Replace with your-admob-unit-id
+							testDeviceID="EMULATOR"
+							didFailToReceiveAdWithError={this.bannerError}
+						/>
+					</View>
 				</View>
 				{!!this.state.questions.length > 0 && this.state.completed === false && this.state.timeLeft > 0 && (
 					<Question
@@ -166,9 +172,8 @@ class Questions extends React.Component {
 							<Text>{``}</Text>
 							{/* <Text style={{fontSize: 30, color: 'red',fontWeight: 'bold', }}>Quiz Completed!</Text> */}
 							<Text>{``}</Text>
-							<Text style={{ fontSize: 25, fontWeight: 'bold' }}>Result: {this.state.results.score}</Text>
-							<Text>{``}</Text>
-							<Text style={{ fontSize: 25, fontWeight: 'bold' }}>Best: {this.state.highScore}</Text>
+
+							
 							<Text>{``}</Text>
 
 							<TouchableOpacity style={styles.button} onPress={this.tryAgain}>
@@ -194,13 +199,13 @@ class Questions extends React.Component {
               </Text>
               <Text>Total Score: {50}</Text> */}
 							<Text>{``}</Text>
-							{/* <Text style={{fontSize: 30, color: 'red',fontWeight: 'bold', }}>Time up!</Text> */}
+							{/* <Text style={{fontSize: 30, color: 'red',fontWeight: 'bold', }}>Time up</Text> */}
 							<Text>{``}</Text>
 							<Text style={{ fontSize: 25, fontWeight: 'bold' }}>Result: {this.state.results.score}</Text>
 							<Text>{``}</Text>
 							<Text style={{ fontSize: 25, fontWeight: 'bold' }}>Best: {this.state.highScore}</Text>
 							<Text>{``}</Text>
-
+							
 							<TouchableOpacity style={styles.button} onPress={this.tryAgain}>
 								<Text style={{ color: 'white', fontWeight: 'bold' }}>Try Again</Text>
 							</TouchableOpacity>
@@ -214,7 +219,7 @@ class Questions extends React.Component {
 						</View>
 					)}
 				</View>
-				<View style={{ top: 150 }}>
+				<View style = {{top: 150}}>
 					<AdMobBanner
 						style={styles.bottomBanner}
 						bannerSize="fullBanner"
@@ -223,7 +228,7 @@ class Questions extends React.Component {
 						testDeviceID="EMULATOR"
 						didFailToReceiveAdWithError={this.bannerError}
 					/>
-
+          
 					<AdMobBanner
 						style={styles.bottomBanner}
 						bannerSize="fullBanner"
@@ -241,11 +246,8 @@ class Questions extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
-		height: '100%',
-  },
-  bottomBanner: {
+		height: '20%',
 		position: 'relative',
-		bottom: 0,
 	},
 	button: {
 		backgroundColor: '#5cb85c',

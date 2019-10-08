@@ -1,25 +1,18 @@
 import React from 'react';
-import {
-	View,
-	Text,
-	ActivityIndicator,
-	StyleSheet,
-	Picker,
-	Button,
-	ScrollView,
-	TouchableOpacity,
-	AsyncStorage,
-	Image,
-	SafeAreaView
-} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, Linking, Platform } from 'react-native';
 import Question from './Question';
 import { questions } from './gamelist';
 import { LifeUpdateScore } from '../../redux/actions';
 import { connect } from 'react-redux';
-import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo';
-
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded } from 'expo-ads-admob';
 
 class Questions extends React.Component {
+	// _handlePress = () => {
+	// 	Platform.OS === 'ios'
+	// 		? Linking.openURL('https://itunes.apple.com/ng/app/id1459086040?mt=8')
+	// 		: Linking.openURL('https://play.google.com/store/apps/details?id=com.jcole.jcolequotesandlyricsgame');
+	// 	this.props.onPress && this.props.onPress();
+	// };
 	constructor(props) {
 		super(props);
 
@@ -107,18 +100,20 @@ class Questions extends React.Component {
 			highScore: this.props.ScoreLife,
 		});
 	};
+
 	bannerError() {
-		console.log("An error");
+		console.log('An error');
 		return;
-	  }
+	}
 
 	render() {
 		// console.log('===========highScore=========================');
 		// console.log(this.state.highScore);
 		// console.log('====================================');
 		return (
-			<ScrollView style={styles.container}>
-			<View>
+			<ScrollView>
+				<View style={styles.container}>
+					<View>
 						<AdMobBanner
 							style={styles.bottomBanner}
 							bannerSize="fullBanner"
@@ -128,6 +123,8 @@ class Questions extends React.Component {
 							didFailToReceiveAdWithError={this.bannerError}
 						/>
 					</View>
+				</View>
+
 				{!!this.state.questions.length > 0 && this.state.completed === false && this.state.life != 0 && (
 					<Question
 						onSelect={answer => {
@@ -140,7 +137,12 @@ class Questions extends React.Component {
 						wrongAnswer={this.wrongAnswer}
 					/>
 				)}
-
+				{/* <TouchableOpacity style={styles.button} onPress = {this._handlePress()}>
+								<Text style={{ color: 'white', textAlign: 'center' }}>
+									Want more Lives?{'\n'}Upgrade to Pro Version
+								</Text>
+							</TouchableOpacity>
+ */}
 				<SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 					{this.state.completed === true && (
 						<View style={{ alignItems: 'center' }}>
@@ -154,13 +156,13 @@ class Questions extends React.Component {
 									alignItems: 'center',
 								}}
 							/>
-							<Text style={{ fontSize: 24,fontWeight: 'bold', }}>Quiz Completed!</Text>
+							<Text style={{ fontSize: 24, fontWeight: 'bold' }}>Quiz Completed!</Text>
 							<Text style={{ fontSize: 24 }}>Number One J Cole Fan!!!</Text>
 							<Text>{``}</Text>
 							<Text style={{ fontSize: 18 }}>Result: {this.state.results.score}</Text>
 							<Text>{``}</Text>
 							<Text style={{ fontSize: 18 }}>Best: {this.state.highScore}</Text>
-							
+
 							<TouchableOpacity style={styles.button} onPress={this.tryAgain}>
 								<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30 }}>Try Again</Text>
 							</TouchableOpacity>
@@ -169,11 +171,12 @@ class Questions extends React.Component {
 								style={styles.button}
 								onPress={() => this.props.navigation.push('Lyrics Game')}
 							>
-								<Text style={{ color: 'white', fontWeight: 'bold',fontSize: 30, }}>Main Menu</Text>
+								<Text style={{ color: 'white', fontWeight: 'bold', fontSize: 30 }}>Main Menu</Text>
 							</TouchableOpacity>
 						</View>
 					)}
 				</SafeAreaView>
+
 				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 					{this.state.life == 0 && (
 						<View style={{ alignItems: 'center' }}>
@@ -183,14 +186,8 @@ class Questions extends React.Component {
 							<Text style={{ fontSize: 25, fontWeight: 'bold' }}>Result: {this.state.results.score}</Text>
 							<Text>{``}</Text>
 							<Text style={{ fontSize: 25, fontWeight: 'bold' }}>Best: {this.state.highScore}</Text>
-							{/* <Text>Correct Answers: {this.state.results.correctAnswers}</Text>
-              <Text>
-                Incorrect Answers:{" "}
-                {50 - parseInt(this.state.results.correctAnswers)}
-              </Text>
-              <Text>Total Score: {50}</Text>
-              <Text>Obtained Score: {this.state.results.score}</Text> */}
 
+							
 							<TouchableOpacity style={styles.button} onPress={this.tryAgain}>
 								<Text style={{ color: 'white', fontWeight: 'bold' }}>Try Again</Text>
 							</TouchableOpacity>
@@ -199,12 +196,12 @@ class Questions extends React.Component {
 								style={styles.button}
 								onPress={() => this.props.navigation.navigate('Lyrics Game')}
 							>
-								<Text style={{ color: 'white', fontWeight: 'bold' }}>Main Menu</Text>
+								 <Text style={{ color: 'white', fontWeight: 'bold' }}>Main Menu</Text>
 							</TouchableOpacity>
 						</View>
 					)}
 				</View>
-				<View style = {{top: 100}}>
+				<View style = {{top: 150}}>
 					<AdMobBanner
 						style={styles.bottomBanner}
 						bannerSize="fullBanner"
@@ -231,16 +228,17 @@ class Questions extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
-		height: '100%',
+		height: '20%',
+		position: 'relative',
+	},
+	bottomBanner: {
+		position: 'relative',
+		bottom: 0,
 	},
 	loadingQuestions: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-	},
-	bottomBanner: {
-		position: 'relative',
-		bottom: 0,
 	},
 	button: {
 		backgroundColor: '#5cb85c',

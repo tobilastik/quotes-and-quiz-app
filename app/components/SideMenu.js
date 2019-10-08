@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, StyleSheet, Share } from 'react-native';
-import { MailComposer, FileSystem } from 'expo';
+import * as FileSystem from 'expo-file-system';
+import * as MailComposer from 'expo-mail-composer';
 
 class SideMenu extends Component {
 	componentDidMount() {
